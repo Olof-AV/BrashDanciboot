@@ -25,15 +25,15 @@ float gScanlineScale;
 //-------------
 PS_INPUT VS(VS_INPUT input)
 {
-	PS_INPUT output = (PS_INPUT)0;
-	
-	// Set the Position
-	output.Position = float4(input.Position, 1.f);
-	
-	// Set the TexCoord
-	output.TexCoord = input.TexCoord;
-	
-	return output;
+    PS_INPUT output = (PS_INPUT)0;
+    
+    // Set the Position
+    output.Position = float4(input.Position, 1.f);
+    
+    // Set the TexCoord
+    output.TexCoord = input.TexCoord;
+    
+    return output;
 }
 
 float2 GetBentCoords(float2 uv)
@@ -104,10 +104,10 @@ technique11 Scanline
 {
     pass P0
     {
-		// Set states...
-		SetRasterizerState(BackCulling);
-		SetDepthStencilState(Depth, 0);
-		
+        // Set states...
+        SetRasterizerState(BackCulling);
+        SetDepthStencilState(Depth, 0);
+        
         SetVertexShader( CompileShader( vs_4_0, VS() ) );
         SetGeometryShader( NULL );
         SetPixelShader( CompileShader( ps_4_0, PS() ) );

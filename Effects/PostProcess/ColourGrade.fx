@@ -14,15 +14,15 @@ Texture2D gTextureLUT;
 //-------------
 PS_INPUT VS(VS_INPUT input)
 {
-	PS_INPUT output = (PS_INPUT)0;
-	
-	// Set the Position
-	output.Position = float4(input.Position, 1.f);
-	
-	// Set the TexCoord
-	output.TexCoord = input.TexCoord;
-	
-	return output;
+    PS_INPUT output = (PS_INPUT)0;
+    
+    // Set the Position
+    output.Position = float4(input.Position, 1.f);
+    
+    // Set the TexCoord
+    output.TexCoord = input.TexCoord;
+    
+    return output;
 }
 
 
@@ -53,7 +53,7 @@ float4 PS(PS_INPUT input) : SV_Target
     
     //Apply offset to final coordinate
     colour.rg += offset;
-	
+    
     //Get looked up colour
     return gTextureLUT.Sample(samLUT, colour.rg);
 }
@@ -65,10 +65,10 @@ technique11 ColourGrade
     pass P0
     {          
         // Set states...
-		SetRasterizerState(BackCulling);
-		SetDepthStencilState(Depth, 0);
-		
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
+        SetRasterizerState(BackCulling);
+        SetDepthStencilState(Depth, 0);
+        
+        SetVertexShader( CompileShader( vs_4_0, VS() ) );
         SetGeometryShader( NULL );
         SetPixelShader( CompileShader( ps_4_0, PS() ) );
     }

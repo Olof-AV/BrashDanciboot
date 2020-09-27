@@ -12,15 +12,15 @@ SamplerState samAniso
 //-------------
 PS_INPUT VS(VS_INPUT input)
 {
-	PS_INPUT output = (PS_INPUT)0;
-	
-	// Set the Position
-	output.Position = float4(input.Position, 1.f);
-	
-	// Set the TexCoord
-	output.TexCoord = input.TexCoord;
-	
-	return output;
+    PS_INPUT output = (PS_INPUT)0;
+    
+    // Set the Position
+    output.Position = float4(input.Position, 1.f);
+    
+    // Set the TexCoord
+    output.TexCoord = input.TexCoord;
+    
+    return output;
 }
 
 float LuminanceFromLinearRGB(float3 LinearRBG)
@@ -62,8 +62,8 @@ float4 PS(PS_INPUT input) : SV_Target
     
     //The visible contrast limit (slow setting) as defined in the original algorithm
     //   0.0833 - upper limit (default, the start of visible unfiltered edges)
-	//   0.0625 - high quality (faster)
-	//   0.0312 - visible limit (slower)
+    //   0.0625 - high quality (faster)
+    //   0.0312 - visible limit (slower)
     if (contrast < 0.0312f)
     {
         return float4(gTexture.Sample(samPoint, input.TexCoord).xyz, 1.f);
@@ -71,10 +71,10 @@ float4 PS(PS_INPUT input) : SV_Target
     
     //The relative contrast threshold (slow setting) as seen in the original algorithm
     //   0.333 - too little (faster)
-	//   0.250 - low quality
-	//   0.166 - default
-	//   0.125 - high quality 
-	//   0.063 - overkill (slower)
+    //   0.250 - low quality
+    //   0.166 - default
+    //   0.125 - high quality 
+    //   0.063 - overkill (slower)
     if(contrast < 0.063f * contrastHigh)
     {
         return float4(gTexture.Sample(samPoint, input.TexCoord).xyz, 1.f);
@@ -239,10 +239,10 @@ technique11 FXAA
     pass P0
     {          
         // Set states...
-		SetRasterizerState(BackCulling);
-		SetDepthStencilState(Depth, 0);
-		
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
+        SetRasterizerState(BackCulling);
+        SetDepthStencilState(Depth, 0);
+        
+        SetVertexShader( CompileShader( vs_4_0, VS() ) );
         SetGeometryShader( NULL );
         SetPixelShader( CompileShader( ps_4_0, PS() ) );
     }
